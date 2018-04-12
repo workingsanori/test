@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>study3</display-name>
+  
+  
+  <display-name>study3</display-name>
+  
+  <!-- 루트 어플리케이션 컨텍스트 -->
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/*-config.xml</param-value><!--classpath는(src/main/resources)에 있는 spring-->
+  </context-param>  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class><!-- 사용자 요청관리하는게 아니라 빈과 관련 // 서비스단 이상 관련된 것들....????-->
+  </listener>
+  
+  
+  
+  
+  <!--서블릿을 2개 만들어서 하나는 .do로 요청들어올때와 .min으로 요청들어올대 따로 처리 해주고 싶을때...-->
+  <!-- 서블릿은 사용자 요청 -->
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name><!--네임은 변경가능-->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/mvc-config.xml</param-value><!-- 웹에서 사용하는 빈???과 관련된 설정은 여기에 저장 -->
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name><!--경로맵핑 루트 밑은 모두 서블릿을 실행시켜라-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>

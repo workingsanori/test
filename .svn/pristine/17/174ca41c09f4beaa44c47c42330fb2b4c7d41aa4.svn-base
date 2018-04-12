@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<bean id="phone" class="com.study.spring.test.AndroidPhone"/>
+	
+	<bean id="userDI" class="com.study.spring.test.UserDI">
+		<property name="phone"><!-- setter -->
+			<ref bean="phone"/><!--맵버필드가 아니라 페러미터로 넘겨줄 아규먼트 인가....????이름이 같아서 헷갈리네ㅋㅋㅋ-->
+		</property>
+		<property name="name">
+			<value>민경DI</value>
+		</property>
+	</bean>
+</beans>

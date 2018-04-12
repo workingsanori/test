@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!--공통기능 빈 등록-->
+	<bean id="logger" class="com.study.spring.test.aop.LoggingAdvice"></bean>
+	
+	<!--일반 빈 등록-->
+	<bean id="target" class="com.study.spring.test.aop.TargetObject"></bean>
+	
+	<aop:config>
+		<aop:aspect  ref="logger"><!-- id="생략가능" -->
+			<!--excution(public * com.study.*.service.*.*(..))
+			첫번재 * : 리턴타입
+			두번재 * : 패키지명중하나
+			세번재 * : 클래스명
+			네번째 * : 메서드
+			(..)	: 페러미터값이 있던 없던 전부(여러 페러미터)
+																
+			-->
+			
+		
+			<aop:pointcut expression="execution(* total(..))" id="pc"/><!--total인 메서드 실행시 LoggingAdvice에 등록된 공통사항이 실행됨-->
+			<!--total이란 메서드가 실행된 후(before) logging메서드가 실행됨-->
+			<!-- <aop:before method="logging" pointcut-ref="pc"/> -->
+			<aop:around method="aroundMethod" pointcut-ref="pc"/>
+		</aop:aspect>
+	
+	</aop:config>
+	
+</beans>

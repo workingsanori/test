@@ -1,0 +1,15 @@
+package com.study.spring.test;
+
+import java.util.List;
+
+public class AndroidPhone implements Phone{
+
+	public void calling() {
+		System.out.println("안드로이드 전화 왔어요~~~");
+	}
+
+	public List<String> getAddress() {
+		return null;
+	}
+
+}

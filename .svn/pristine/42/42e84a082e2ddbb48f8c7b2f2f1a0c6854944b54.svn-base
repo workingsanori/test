@@ -1,0 +1,23 @@
+package com.study.spring.test;
+
+//User.java와 다른 방법
+public class UserDI {
+
+	// 스프링의 DI를 통해서 객체 받기(setter)
+	Phone phone;
+	String name = "민경";
+
+	//사용자 정보
+	public void info() {
+		System.out.println("내 이름은 "+name);
+		phone.calling(); //new를 생성하지 않고 AndroidPhone의 calling()메서드를 호출 할수 있다
+	}
+
+	public void setPhone(Phone phone) {
+		this.phone = phone;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+}

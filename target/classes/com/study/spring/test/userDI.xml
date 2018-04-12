@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!--스프링을 관리하는 객체의 bean 자바빈고 다라므-->
+	<!--보통 자바빈은 여기서 안한다-->
+	<bean id="phone" class="com.study.spring.test.AndroidPhone"><!--인스턴스객체가 하나만 생성new를 한번만한다-->
+		<property name="address"><!--setter setAddress이것과 같음-->
+			<list><!--리스트는 보통 잘안쓰고 ref랑 value만 쓴다ㅎㅎ-->
+				<value>조아라</value>
+				<value>남  솔</value>
+				<value>손정완</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="iPhone" class="com.study.spring.test.IPhone">
+		<property name="address">
+			<list>
+				<value>나혜진</value>
+				<value>이제진</value>
+				<value>문희준</value>
+			</list>
+		</property>
+	
+	</bean>
+	
+	
+<!--방법1 :가장 짧음 : 네임스페이스(p:)를 활용해서 사용 아래 Namespaces탭 클릭해서 p 선택-->
+	<bean id="userDI" class="com.study.spring.test.UserDI" 
+	init-method="init"
+	destroy-method="close"
+	p:name="민경ID" p:phone-ref="iPhone"/>
+	
+<!--방법2 : 중간길이-->
+	<!-- 	<bean id="userDI" class="com.study.spring.test.UserDI">
+			<property name="phone" ref="iPhone" />
+			<property name="name" value="민경 ID" />
+		</bean>
+	 -->
+	
+<!--방법3 : 가장길다-->
+	<!-- 
+		<bean id="userDI" class="com.study.spring.test.UserDI">
+			
+			<property name="phone">setter
+				<ref bean="iPhone"/>위에서 bean으로 생성한 id값을 아규먼트로 setPhone에 페러미터 Phone phone의 페러미터로 보내는것임(Phone는 )
+			</property>
+			
+			<property name="name">
+				<value>민경DI</value>
+			</property>
+		</bean>
+	 -->
+</beans>
