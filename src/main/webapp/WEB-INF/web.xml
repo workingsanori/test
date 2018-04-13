@@ -6,6 +6,7 @@
   <display-name>study3</display-name>
   
   <!-- 루트 어플리케이션 컨텍스트 -->
+  <!-- 컨텍스트 로더 리스터는 서비스와 다오등을 관리 -->
   
   <context-param>
     <param-name>contextConfigLocation</param-name>
@@ -15,11 +16,24 @@
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class><!-- 사용자 요청관리하는게 아니라 빈과 관련 // 서비스단 이상 관련된 것들....????-->
   </listener>
   
-  
-  
+  <!-- 페러미터의 한글 처리를 위한 필터 적용 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
   
   <!--서블릿을 2개 만들어서 하나는 .do로 요청들어올때와 .min으로 요청들어올대 따로 처리 해주고 싶을때...-->
   <!-- 서블릿은 사용자 요청 -->
+  <!-- 디스패처는 컨트롤러만 담 -->
   <servlet>
     <servlet-name>dispatcherServlet</servlet-name><!--네임은 변경가능-->
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -33,4 +47,6 @@
     <servlet-name>dispatcherServlet</servlet-name><!--경로맵핑 루트 밑은 모두 서블릿을 실행시켜라-->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+  
 </web-app>

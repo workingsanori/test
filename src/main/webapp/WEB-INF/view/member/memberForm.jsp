@@ -24,7 +24,7 @@
 		<div class="page-header">
 			<h2>회원 등록</h2>
 		</div>
-		<form action="memberInsert.do" method="post">
+		<form action="memberInsert" method="post">
 			<div class="row">
 
 			<table class="table table-striped">
@@ -54,7 +54,7 @@
 			</table>
 			</div>
 			<div class="row">
-				<a class="btn btn-default" href="memberList.do" role="button">취소</a>
+				<a class="btn btn-default" href="memberList" role="button">취소</a>
 				<button type="submit" class="btn btn-default pull-right" role="button">저장</button>
 			</div>
 		</form>	

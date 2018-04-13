@@ -15,8 +15,8 @@
 
 <h2>민경사이트</h2>
 <a href="<%=request.getContextPath()%>/index.jsp">Home</a>
-<a href="<%=request.getContextPath()%>/Ex01_member/memberList.do">회원관리</a>
-<a href="<%=request.getContextPath()%>/Ex02_board/boardList.do">게시판</a>
+<a href="<%=request.getContextPath()%>/member/memberList">회원관리</a>
+<a href="<%=request.getContextPath()%>/board/boardList">게시판</a>
 <%
 	Member member = (Member)session.getAttribute("LOGIN_USER");
 	if(member != null){

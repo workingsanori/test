@@ -35,7 +35,7 @@
 		<div class="page-header">
 			<h2>회원 정보수정</h2>
 		</div>
-		<form action="memberUpdate.do" method="post">
+		<form action="memberUpdate" method="post">
 			<div class="row">
 
 			<table class="table table-striped">
@@ -74,7 +74,7 @@
 			</table>
 			</div>
 			<div class="row">
-					<a class="btn btn-default" href="memberList.do" role="button">목록으로</a>
+					<a class="btn btn-default" href="memberList" role="button">목록으로</a>
 					<button type="submit" class="btn btn-default pull-right" role="button">저장</button>
 			</div>
 		</form>	

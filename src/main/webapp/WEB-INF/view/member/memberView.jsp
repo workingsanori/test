@@ -25,7 +25,7 @@
 
 <body>
 	<div class="container">
-		<form action="memberDelete.do" method="post">
+		<form action="memberDelete" method="post">
 			<div class="page-header">
 				<h2>회원 상세정보</h2>
 			</div>
@@ -65,9 +65,9 @@
 				</table>
 			</div>
 			<div class="row">
-				<a class="btn btn-default" href="memberList.do" role="button">목록으로</a>
+				<a class="btn btn-default" href="memberList" role="button">목록으로</a>
 				<a class="btn btn-default pull-right"
-					href="memberEdit.do?mem_id=${member.mem_id}" role="button">수정</a>
+					href="memberEdit?mem_id=${member.mem_id}" role="button">수정</a>
 				
 				<!-- 모달 버튼 -->	 
 				<button type="button" class="btn btn-primary  pull-right" 

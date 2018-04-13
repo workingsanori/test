@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- 디스패치 서블릿이 쓰는놈 -->
 <!-- xmlns가....기본 beans는 바로 사용가능 xmlns:aaa는 aaa:이라고 써야한다-->
 <!--xmlns가 기본이니까 어떤게 기본으로 설정되어 있는지 확인해야함  -->
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -14,9 +14,24 @@
          <context:component-scan
             base-package="org.springframework.samples.web"/>  -->
 
-<!--  -->
+    
     <mvc:annotation-driven />
-    <context:component-scan base-package="com.study" />
+    
+    <!-- 서비스나 다오를 부르지 않고 그냥 뷰만 리턴해줄때  컨트롤러에 굳이 메서드 선언하지 않고 뷰컨트롤러라고 쓰면된다 -->
+	<mvc:view-controller path="/member/memberForm"/> <!-- view-name="" 경로와 파일명.jsp 이 같을 경우는 생략 가능 다르면 사용  -->
+    
+    
+    <!--
+    	@Controller로 정의된 빈을 등록
+		부수적으로 의존객체(@Autowird) 주입
+		@Annotation 실행.....
+     -->
+    <context:component-scan base-package="com.study"><!-- 여기서는 컨트롤러만... 서비스나 다오는 application-config.xml에서 컨텍스트 스캔을 한다 -->
+    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/><!-- 빈등록할때 필터 적용된 놈들은 뺀다 -->
+    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/><!-- 빈등록할때 필터 적용된 놈들은 뺀다 -->
+    </context:component-scan>
+    
+    
     
 <!-- mvc가 기본으로 설정되 있는경우
     <annotation-driven></annotation-driven>
@@ -31,10 +46,17 @@
 	        <property name="suffix" value=".jsp"/>
 	</bean>
 	
-	<mvc:resources location="/css/" mapping="/css/**"/>
+	<!-- 요청에 대한 컨트롤러가 없을때 WAS(서버)에 위임, mvc:resources보다 짧게 사용가능 -->
+	<mvc:default-servlet-handler/><!-- 확장자 맵핑일때는 신경쓸을이 없지만 경로맵핑일경우에 문제가 되는거임ㅎㅎㅎ -->
+	
+	
+	
+	<!-- 정적자원 (js, css, img) 등의 경로를 컨트롤러사용하지 않고 처리 -->
+<!--
+ 	<mvc:resources location="/css/" mapping="/css/**"/>
 	<mvc:resources location="/error/" mapping="/error/**"/>
 	<mvc:resources location="/font/" mapping="/font/**"/>
 	<mvc:resources location="/images/" mapping="/images/**"/>
-	<mvc:resources location="/js/" mapping="/js/**"/>
-
+	<mvc:resources location="/js/" mapping="/js/**"/>맵핑이 사용자가 요청한 url 로케이션이 실재 파일위치한 
+ -->
 </beans>

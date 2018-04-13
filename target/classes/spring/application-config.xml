@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- 컨텍스트 로더 리스너 쓰는 환경설정 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -18,6 +18,7 @@
             
 	<!-- @컴포넌트를 쓴놈들 빈으로 등록, 단 @Controller를 제외 -->            
 	<context:component-scan base-package="com.study">
+<!-- 턴트롤러를 제외한다는 뜻 -->	
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
@@ -82,6 +83,10 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactoryBean" />
 	</bean>
+	
+	<!-- 아래부분을 안하면 다오 인터페이스의 구현채를 만들어야 한다..????? -->
+	
+	<!--  -->
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.study.*.dao" />

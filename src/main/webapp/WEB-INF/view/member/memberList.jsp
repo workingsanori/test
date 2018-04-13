@@ -30,7 +30,7 @@
 			</button>
 		</div>
 		<div class="row">
-			<a class="btn btn-default pull-right" href="memberForm.do" role="button">회원등록</a>
+			<a class="btn btn-default pull-right" href="memberForm" role="button">회원등록</a>
 		</div>		
 		<div class="row">
 			<table class="table table-striped">
@@ -58,7 +58,7 @@
 							<tr>
 								<td>${st.count}</td>
 								<td>${uesr.mem_id}</td>
-								<td><a href="memberView.do?mem_id=${uesr.mem_id}">${uesr.mem_name}</a></td>
+								<td><a href="memberView?mem_id=${uesr.mem_id}">${uesr.mem_name}</a></td>
 								<td>${uesr.mem_phone}</td>
 								<td>${uesr.mem_email}</td>
 								<td>${uesr.reg_date}</td>
@@ -70,7 +70,7 @@
 				</tbody>
 			</table>
 		</div>
-
 	</div>
+	<img alt="이미지" src="${pageContext.request.contextPath}/images/apple.png">
 </body>
 </html>
